@@ -379,7 +379,7 @@
         </div>
     </div>
 
-    <!-- شريط التنقل السفلي: 🏠 البحث 🔍 Gemini -->
+    <!-- شريط التنقل السفلي: 🏠 البحث 🔍 Gemalot-->
     <nav class="bottom-nav">
         <a href="index.html" class="nav-item active">
             <div class="nav-icon">🏠</div>
@@ -389,11 +389,11 @@
             <div class="nav-icon">🔍</div>
             <span>بحث</span>
         </a>
-        <a href="https://gemini.google.com" class="nav-item">
+        <a href="https://mohamedmadoui5195.github.io/Gemalot/" class="nav-item">
             <div class="nav-icon">
                 <div class="gemini-logo">G</div>
             </div>
-            <span>Gemini</span>
+            <span>Gemalot</span>
         </a>
     </nav>
 
