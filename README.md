@@ -23,6 +23,117 @@
             position: relative;
         }
 
+        /* ================= الشاشة الترحيبية الاحترافية ================= */
+        .bing-splash-screen {
+            position: fixed;
+            inset: 0;
+            background: #050b14;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            overflow: hidden;
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .bing-splash-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(1.12);
+            pointer-events: none;
+        }
+
+        .bing-splash-bg {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(0, 195, 255, 0.15), transparent 60%),
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 30px 30px, 30px 30px;
+            background-position: 0 0, 15px 15px, 15px 15px;
+            animation: bgPulse 4s ease-in-out infinite alternate;
+        }
+
+        .bing-spinner-wrapper {
+            position: relative;
+            width: 130px;
+            height: 130px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 32px;
+            animation: iconPulse 2.5s ease-in-out infinite alternate;
+        }
+
+        .bing-spinner-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border-radius: 38px;
+            background: conic-gradient(from 0deg, #00c3ff, #087fff, #7000ff, #00f0ff, #00c3ff);
+            animation: rotateConic 2s linear infinite;
+            filter: blur(12px);
+            opacity: 0.85;
+        }
+
+        .bing-spinner-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 35px;
+            background: conic-gradient(from 0deg, #00c3ff, #087fff, #7000ff, #00f0ff, #00c3ff);
+            animation: rotateConic 2s linear infinite;
+        }
+
+        .bing-icon-cover {
+            position: absolute;
+            inset: 1px;
+            background: #050b14;
+            border-radius: 31px;
+            z-index: 1;
+        }
+
+        .bing-splash-icon {
+            position: relative;
+            z-index: 2;
+            width: 110px;
+            height: 110px;
+            border-radius: 26px;
+            object-fit: cover;
+            box-shadow: 0 15px 35px rgba(0, 195, 255, 0.3);
+        }
+
+        .bing-splash-title {
+            position: relative;
+            z-index: 2;
+            margin-top: 25px;
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, #ffffff 30%, #6fb7ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 20px rgba(0, 195, 255, 0.2);
+        }
+
+        @keyframes rotateConic {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes iconPulse {
+            0% { transform: scale(0.96); }
+            100% { transform: scale(1.04); }
+        }
+
+        @keyframes bgPulse {
+            0% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+        /* =============================================================== */
+
         /* الخلفية مثل الصورة */
         .bg {
             position: fixed;
@@ -219,12 +330,6 @@
             gap: 6px;
         }
 
-        .card-icon {
-            width: 16px;
-            height: 16px;
-            border-radius: 4px;
-        }
-
         /* شريط التنقل السفلي */
         .bottom-nav {
             position: fixed;
@@ -275,13 +380,6 @@
             line-height: 1;
         }
 
-        .nav-icon svg {
-            width: 24px;
-            height: 24px;
-            fill: currentColor;
-        }
-
-        /* شعار Gemini */
         .gemini-logo {
             width: 28px;
             height: 28px;
@@ -296,7 +394,6 @@
             box-shadow: 0 2px 8px rgba(30, 100, 200, 0.5);
         }
 
-        /* إخفاء شريط التمرير على الموبايل */
         @media (max-width: 480px) {
             .main {
                 margin-top: 26vh;
@@ -312,6 +409,16 @@
     </style>
 </head>
 <body>
+    <!-- الشاشة الترحيبية -->
+    <div class="bing-splash-screen" id="bingSplash">
+        <div class="bing-splash-bg"></div>
+        <div class="bing-spinner-wrapper">
+            <div class="bing-icon-cover"></div>
+            <img src="icon.png" class="bing-splash-icon" alt="Bing Icon" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' rx=\'25\' fill=\'%23087fff\'/><text x=\'50\' y=\'68\' font-size=\'55\' font-weight=\'bold\' text-anchor=\'middle\' fill=\'white\'>B</text></svg>'">
+        </div>
+        <div class="bing-splash-title">Alislamiah Bing</div>
+    </div>
+
     <div class="bg"></div>
 
     <!-- شريط الحالة -->
@@ -325,7 +432,7 @@
         </div>
     </div>
 
-    <!-- أيقونة الحساب + icon.png -->
+    <!-- أيقونة الحساب -->
     <div class="profile">
         <div class="profile-btn">
             <img src="icon.png" alt="Icon" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
@@ -379,7 +486,7 @@
         </div>
     </div>
 
-    <!-- شريط التنقل السفلي: 🏠 البحث 🔍 Gemalot-->
+    <!-- شريط التنقل السفلي -->
     <nav class="bottom-nav">
         <a href="index.html" class="nav-item active">
             <div class="nav-icon">🏠</div>
@@ -398,6 +505,16 @@
     </nav>
 
     <script>
+        // مؤقت الـ 5 ثوانٍ لإخفاء الشاشة الترحيبية
+        window.addEventListener("DOMContentLoaded", function () {
+            setTimeout(function () {
+                var splash = document.getElementById("bingSplash");
+                if (splash) {
+                    splash.classList.add("hidden");
+                }
+            }, 5000);
+        });
+
         // إرسال البحث إلى صفحة النتائج
         document.getElementById('searchForm').addEventListener('submit', function(e) {
             const q = this.querySelector('input[name="q"]').value.trim();
@@ -405,7 +522,6 @@
                 e.preventDefault();
                 return;
             }
-            // يذهب تلقائياً إلى results_full.html?q=...
         });
 
         // دعم الضغط على Enter
@@ -414,15 +530,14 @@
                 document.getElementById('searchForm').submit();
             }
         });
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
-      .then((reg) => console.log('Service Worker registered', reg))
-      .catch((err) => console.error('Service Worker failed', err));
-  });
-}
 
-
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then((reg) => console.log('Service Worker registered', reg))
+                    .catch((err) => console.error('Service Worker failed', err));
+            });
+        }
     </script>
 </body>
 </html>
