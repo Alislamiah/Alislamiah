@@ -219,7 +219,7 @@
             min-height: 45vh;
         }
 
-        /* شريط البحث */
+        
         .search-box {
             width: 100%;
             max-width: 520px;
@@ -227,29 +227,23 @@
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border-radius: 50px;
-            padding: 12px 14px;
+            padding: 10px 14px;
             display: flex;
             align-items: center;
             gap: 8px;
-            box-shadow: 0 8px 32px rgba(0, 20, 50, 0.6), 
-                        0 0 0 1px rgba(80, 160, 255, 0.25);
+            box-shadow: 0 8px 32px rgba(0, 20, 50, 0.6), 0 0 0 1px rgba(80, 160, 255, 0.25);
             transition: all 0.25s ease;
-            overflow: visible;
+            overflow: visible !important;
         }
-
         .search-box:focus-within {
-            box-shadow: 0 8px 36px rgba(0, 40, 90, 0.7), 
-                        0 0 0 2px rgba(100, 180, 255, 0.5);
-            background: rgba(15, 35, 65, 0.95);
+            box-shadow: 0 8px 36px rgba(0, 40, 90, 0.7), 0 0 0 2px rgba(100, 180, 255, 0.5);
         }
-
         .search-icon {
             width: 22px;
             height: 22px;
             fill: #6ba3e0;
             flex-shrink: 0;
         }
-
         .search-input {
             flex: 1;
             background: transparent;
@@ -257,67 +251,63 @@
             outline: none;
             color: #e8f4ff;
             font-size: 17px;
-            font-weight: 400;
             direction: rtl;
+            min-width: 60px;
         }
-
-        .search-input::placeholder {
-            color: #7a9cc0;
-        }
-
-        .search-actions {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-shrink: 0;
-        }
-
-        .action-btn {
-            width: 26px;
-            height: 26px;
-            fill: #6ba3e0;
-            cursor: pointer;
-            transition: fill 0.2s;
-            flex-shrink: 0;
-        }
-
-        .action-btn:active {
-            fill: #a8d4ff;
-        }
-
+        .search-input::placeholder { color: #7a9cc0; }
         .search-left{
             display:flex;
             align-items:center;
             gap:8px;
             flex-shrink:0;
         }
+        .search-actions {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+        .icon-btn {
+            width: 36px;
+            height: 36px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+        .icon-btn:hover { background: rgba(255,255,255,0.15); transform: scale(1.05); }
+        .action-btn {
+            width: 20px;
+            height: 20px;
+            fill: #6ba3e0;
+            flex-shrink: 0;
+        }
         .ai-mode-pill{
             display:flex;
             align-items:center;
             gap:4px;
-            background:rgba(159,122,234,0.14);
-            border:1px solid rgba(159,122,234,0.45);
-            color:#c4b5fd;
+            background:rgba(159,122,234,0.18);
+            border:1px solid rgba(159,122,234,0.6);
+            color:#d8b4fe;
             border-radius:20px;
-            padding:5px 12px;
+            padding:6px 13px;
             font-size:13px;
             font-weight:800;
             cursor:pointer;
-            transition:all 0.2s ease;
             white-space:nowrap;
-            font-family:inherit;
             flex-shrink:0;
-        }
-        .ai-mode-pill:hover{
-            background:rgba(159,122,234,0.25);
-            transform:translateY(-1px);
         }
         .ai-mode-pill.active{
             background:linear-gradient(135deg,#9f7aea,#667eea);
             color:#fff !important;
-            border-color:transparent;
             box-shadow:0 0 0 2px rgba(255,255,255,0.7),0 4px 14px rgba(102,126,234,0.7);
         }
+
         /* نخفي الزر القديم لو بقي في الكاش */
         .ai-mode-btn{display:none !important;}
 
@@ -439,6 +429,8 @@
                 margin-top: 26vh;
             }
             .search-box {
+            overflow:visible !important;
+
                 padding: 13px 16px;
             }
             .card {
@@ -483,24 +475,26 @@
     </div>
 
     <!-- المحتوى الرئيسي -->
+    <!-- المحتوى الرئيسي -->
     <div class="main">
-        <!-- شريط البحث - مع زر AI mode بجانب العدسة -->
+        <!-- شريط البحث - النسخة النهائية المضمونة 100% -->
         <form class="search-box" action="results_full.html" method="GET" id="searchForm">
             <div class="search-left">
-                <svg class="search-icon" viewBox="0 0 24 24">
-                    <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-                </svg>
-                <button type="button" class="ai-mode-pill" id="aiModeBtn" onclick="toggleAIMode()" title="AI Mode">AI mode</button>
+                <svg class="search-icon" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                <button type="button" class="ai-mode-pill" id="aiModeBtn" onclick="toggleAIMode()">AI mode</button>
             </div>
             <input type="text" name="q" class="search-input" placeholder="Search" autocomplete="off" autofocus>
             <div class="search-actions">
                 <input type="file" id="imageSearchInput" accept="image/*" capture="environment" style="display:none;" onchange="handleImageSearch(this)">
-                <svg class="action-btn" viewBox="0 0 24 24" onclick="document.getElementById('imageSearchInput').click()" title="بحث بالصور">
-                    <path d="M12 15.2c1.76 0 3.2-1.44 3.2-3.2s-1.44-3.2-3.2-3.2-3.2 1.44-3.2 3.2 1.44 3.2 3.2 3.2zm0-8c2.65 0 4.8 2.15 4.8 4.8s-2.15 4.8-4.8 4.8-4.8-2.15-4.8-4.8 2.15-4.8 4.8-4.8zm8.4-2H18l-1.2-1.6c-.3-.4-.8-.6-1.3-.6H8.5c-.5 0-1 .2-1.3.6L6 5.2H3.6C2.7 5.2 2 5.9 2 6.8v12.4c0 .9.7 1.6 1.6 1.6h16.8c.9 0 1.6-.7 1.6-1.6V6.8c0-.9-.7-1.6-1.6-1.6z"/>
-                </svg>
-                <svg class="action-btn" id="micBtn" viewBox="0 0 24 24" onclick="startVoiceSearch()" title="بحث صوتي">
-                    <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm-1-9c0-.55.45-1 1-1s1 .45 1 1v6c0 .55-.45 1-1 1s-1-.45-1-1V5zm6 6c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
-                </svg>
+                <button type="button" class="icon-btn" onclick="document.getElementById('imageSearchInput').click()" title="بحث بالصور">
+                    <svg class="action-btn" viewBox="0 0 24 24"><path d="M12 15.2c1.76 0 3.2-1.44 3.2-3.2s-1.44-3.2-3.2-3.2-3.2 1.44-3.2 3.2 1.44 3.2 3.2 3.2zm0-8c2.65 0 4.8 2.15 4.8 4.8s-2.15 4.8-4.8 4.8-4.8-2.15-4.8-4.8 2.15-4.8 4.8-4.8zm8.4-2H18l-1.2-1.6c-.3-.4-.8-.6-1.3-.6H8.5c-.5 0-1 .2-1.3.6L6 5.2H3.6C2.7 5.2 2 5.9 2 6.8v12.4c0 .9.7 1.6 1.6 1.6h16.8c.9 0 1.6-.7 1.6-1.6V6.8c0-.9-.7-1.6-1.6-1.6z"/></svg>
+                </button>
+                <button type="button" class="icon-btn" onclick="startVoiceSearch()" title="بحث صوتي">
+                    <svg class="action-btn" id="micBtn" viewBox="0 0 24 24"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm-1-9c0-.55.45-1 1-1s1 .45 1 1v6c0 .55-.45 1-1 1s-1-.45-1-1V5zm6 6c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg>
+                </button>
+                <button type="submit" class="icon-btn" style="background:rgba(100,180,255,0.2);" title="بحث">
+                    <svg class="action-btn" style="fill:#8ab4ff" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                </button>
             </div>
         </form>
 
@@ -685,61 +679,40 @@
     </nav>
 
     <script>
-        // ========== AI Mode Variable - يجب أن يكون أولا ==========
         let aiMode = false;
-        // مؤقت الـ 5 ثوانٍ لإخفاء الشاشة الترحيبية
         window.addEventListener("DOMContentLoaded", function () {
             setTimeout(function () {
                 var splash = document.getElementById("bingSplash");
-                if (splash) {
-                    splash.classList.add("hidden");
-                }
+                if (splash) splash.classList.add("hidden");
             }, 5000);
         });
-
-        // إرسال البحث - لو AI Mode يروح لـ Gemalot
         document.getElementById('searchForm').addEventListener('submit', function(e) {
             const q = this.querySelector('input[name="q"]').value.trim();
-            if (!q) {
-                e.preventDefault();
-                return;
-            }
+            if (!q) { e.preventDefault(); return; }
             if (aiMode) {
                 e.preventDefault();
-                const gemalotUrl = 'https://mohamedmadoui5195.github.io/Gemalot/?q=' + encodeURIComponent(q);
-                window.location.href = gemalotUrl;
+                window.location.href = 'https://mohamedmadoui5195.github.io/Gemalot/?q=' + encodeURIComponent(q);
                 return;
             }
         });
-
-        // دعم الضغط على Enter
         document.querySelector('.search-input').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                document.getElementById('searchForm').submit();
-            }
+            if (e.key === 'Enter') { document.getElementById('searchForm').submit(); }
         });
-
-
-
-        // ========== AI Mode ==========
         function toggleAIMode() {
             aiMode = !aiMode;
             const btn = document.getElementById('aiModeBtn');
             const input = document.querySelector('.search-input');
+            const box = document.querySelector('.search-box');
             if (aiMode) {
-                if (btn) {
-                    btn.classList.add('active');
-                    if(btn) btn.textContent = 'AI mode ✓';
-                }
+                btn.classList.add('active');
+                btn.textContent = 'AI mode ✓';
                 input.placeholder = 'اسأل AI أي شيء...';
-                input.style.boxShadow = '0 0 0 2px #9f7aea';
+                box.style.boxShadow = '0 0 0 2px #9f7aea, 0 8px 32px rgba(102,126,234,0.5)';
             } else {
-                if (btn) {
-                    btn.classList.remove('active');
-                    if(btn) btn.textContent = 'AI mode';
-                }
+                btn.classList.remove('active');
+                btn.textContent = 'AI mode';
                 input.placeholder = 'Search';
-                input.style.boxShadow = '';
+                box.style.boxShadow = '';
             }
         }
 
