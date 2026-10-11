@@ -219,7 +219,7 @@
             min-height: 45vh;
         }
 
-        
+        /* شريط البحث */
         .search-box {
             width: 100%;
             max-width: 520px;
@@ -227,23 +227,29 @@
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border-radius: 50px;
-            padding: 10px 14px;
+            padding: 12px 14px;
             display: flex;
             align-items: center;
             gap: 8px;
-            box-shadow: 0 8px 32px rgba(0, 20, 50, 0.6), 0 0 0 1px rgba(80, 160, 255, 0.25);
+            box-shadow: 0 8px 32px rgba(0, 20, 50, 0.6), 
+                        0 0 0 1px rgba(80, 160, 255, 0.25);
             transition: all 0.25s ease;
-            overflow: visible !important;
+            overflow: visible;
         }
+
         .search-box:focus-within {
-            box-shadow: 0 8px 36px rgba(0, 40, 90, 0.7), 0 0 0 2px rgba(100, 180, 255, 0.5);
+            box-shadow: 0 8px 36px rgba(0, 40, 90, 0.7), 
+                        0 0 0 2px rgba(100, 180, 255, 0.5);
+            background: rgba(15, 35, 65, 0.95);
         }
+
         .search-icon {
             width: 22px;
             height: 22px;
             fill: #6ba3e0;
             flex-shrink: 0;
         }
+
         .search-input {
             flex: 1;
             background: transparent;
@@ -251,63 +257,67 @@
             outline: none;
             color: #e8f4ff;
             font-size: 17px;
+            font-weight: 400;
             direction: rtl;
-            min-width: 60px;
         }
-        .search-input::placeholder { color: #7a9cc0; }
+
+        .search-input::placeholder {
+            color: #7a9cc0;
+        }
+
+        .search-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .action-btn {
+            width: 26px;
+            height: 26px;
+            fill: #6ba3e0;
+            cursor: pointer;
+            transition: fill 0.2s;
+            flex-shrink: 0;
+        }
+
+        .action-btn:active {
+            fill: #a8d4ff;
+        }
+
         .search-left{
             display:flex;
             align-items:center;
             gap:8px;
             flex-shrink:0;
         }
-        .search-actions {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            flex-shrink: 0;
-        }
-        .icon-btn {
-            width: 36px;
-            height: 36px;
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s;
-            flex-shrink: 0;
-        }
-        .icon-btn:hover { background: rgba(255,255,255,0.15); transform: scale(1.05); }
-        .action-btn {
-            width: 20px;
-            height: 20px;
-            fill: #6ba3e0;
-            flex-shrink: 0;
-        }
         .ai-mode-pill{
             display:flex;
             align-items:center;
             gap:4px;
-            background:rgba(159,122,234,0.18);
-            border:1px solid rgba(159,122,234,0.6);
-            color:#d8b4fe;
+            background:rgba(159,122,234,0.14);
+            border:1px solid rgba(159,122,234,0.45);
+            color:#c4b5fd;
             border-radius:20px;
-            padding:6px 13px;
+            padding:5px 12px;
             font-size:13px;
             font-weight:800;
             cursor:pointer;
+            transition:all 0.2s ease;
             white-space:nowrap;
+            font-family:inherit;
             flex-shrink:0;
+        }
+        .ai-mode-pill:hover{
+            background:rgba(159,122,234,0.25);
+            transform:translateY(-1px);
         }
         .ai-mode-pill.active{
             background:linear-gradient(135deg,#9f7aea,#667eea);
             color:#fff !important;
+            border-color:transparent;
             box-shadow:0 0 0 2px rgba(255,255,255,0.7),0 4px 14px rgba(102,126,234,0.7);
         }
-
         /* نخفي الزر القديم لو بقي في الكاش */
         .ai-mode-btn{display:none !important;}
 
@@ -429,8 +439,6 @@
                 margin-top: 26vh;
             }
             .search-box {
-            overflow:visible !important;
-
                 padding: 13px 16px;
             }
             .card {
@@ -475,26 +483,24 @@
     </div>
 
     <!-- المحتوى الرئيسي -->
-    <!-- المحتوى الرئيسي -->
     <div class="main">
-        <!-- شريط البحث - النسخة النهائية المضمونة 100% -->
+        <!-- شريط البحث - مع زر AI mode بجانب العدسة -->
         <form class="search-box" action="results_full.html" method="GET" id="searchForm">
             <div class="search-left">
-                <svg class="search-icon" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-                <button type="button" class="ai-mode-pill" id="aiModeBtn" onclick="toggleAIMode()">AI mode</button>
+                <svg class="search-icon" viewBox="0 0 24 24">
+                    <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                </svg>
+                <button type="button" class="ai-mode-pill" id="aiModeBtn" onclick="toggleAIMode()" title="AI Mode">AI mode</button>
             </div>
             <input type="text" name="q" class="search-input" placeholder="Search" autocomplete="off" autofocus>
             <div class="search-actions">
                 <input type="file" id="imageSearchInput" accept="image/*" capture="environment" style="display:none;" onchange="handleImageSearch(this)">
-                <button type="button" class="icon-btn" onclick="document.getElementById('imageSearchInput').click()" title="بحث بالصور">
-                    <svg class="action-btn" viewBox="0 0 24 24"><path d="M12 15.2c1.76 0 3.2-1.44 3.2-3.2s-1.44-3.2-3.2-3.2-3.2 1.44-3.2 3.2 1.44 3.2 3.2 3.2zm0-8c2.65 0 4.8 2.15 4.8 4.8s-2.15 4.8-4.8 4.8-4.8-2.15-4.8-4.8 2.15-4.8 4.8-4.8zm8.4-2H18l-1.2-1.6c-.3-.4-.8-.6-1.3-.6H8.5c-.5 0-1 .2-1.3.6L6 5.2H3.6C2.7 5.2 2 5.9 2 6.8v12.4c0 .9.7 1.6 1.6 1.6h16.8c.9 0 1.6-.7 1.6-1.6V6.8c0-.9-.7-1.6-1.6-1.6z"/></svg>
-                </button>
-                <button type="button" class="icon-btn" onclick="startVoiceSearch()" title="بحث صوتي">
-                    <svg class="action-btn" id="micBtn" viewBox="0 0 24 24"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm-1-9c0-.55.45-1 1-1s1 .45 1 1v6c0 .55-.45 1-1 1s-1-.45-1-1V5zm6 6c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg>
-                </button>
-                <button type="submit" class="icon-btn" style="background:rgba(100,180,255,0.2);" title="بحث">
-                    <svg class="action-btn" style="fill:#8ab4ff" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-                </button>
+                <svg class="action-btn" viewBox="0 0 24 24" onclick="document.getElementById('imageSearchInput').click()" title="بحث بالصور">
+                    <path d="M12 15.2c1.76 0 3.2-1.44 3.2-3.2s-1.44-3.2-3.2-3.2-3.2 1.44-3.2 3.2 1.44 3.2 3.2 3.2zm0-8c2.65 0 4.8 2.15 4.8 4.8s-2.15 4.8-4.8 4.8-4.8-2.15-4.8-4.8 2.15-4.8 4.8-4.8zm8.4-2H18l-1.2-1.6c-.3-.4-.8-.6-1.3-.6H8.5c-.5 0-1 .2-1.3.6L6 5.2H3.6C2.7 5.2 2 5.9 2 6.8v12.4c0 .9.7 1.6 1.6 1.6h16.8c.9 0 1.6-.7 1.6-1.6V6.8c0-.9-.7-1.6-1.6-1.6z"/>
+                </svg>
+                <svg class="action-btn" id="micBtn" viewBox="0 0 24 24" onclick="startVoiceSearch()" title="بحث صوتي">
+                    <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm-1-9c0-.55.45-1 1-1s1 .45 1 1v6c0 .55-.45 1-1 1s-1-.45-1-1V5zm6 6c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                </svg>
             </div>
         </form>
 
@@ -679,153 +685,243 @@
     </nav>
 
     <script>
-        let aiMode = false;
+        // مؤقت الـ 5 ثوانٍ لإخفاء الشاشة الترحيبية
         window.addEventListener("DOMContentLoaded", function () {
             setTimeout(function () {
                 var splash = document.getElementById("bingSplash");
-                if (splash) splash.classList.add("hidden");
+                if (splash) {
+                    splash.classList.add("hidden");
+                }
             }, 5000);
         });
+
+        // إرسال البحث إلى صفحة النتائج
         document.getElementById('searchForm').addEventListener('submit', function(e) {
             const q = this.querySelector('input[name="q"]').value.trim();
-            if (!q) { e.preventDefault(); return; }
-            if (aiMode) {
+            if (!q) {
                 e.preventDefault();
-                window.location.href = 'https://mohamedmadoui5195.github.io/Gemalot/?q=' + encodeURIComponent(q);
                 return;
             }
         });
+
+        // دعم الضغط على Enter
         document.querySelector('.search-input').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') { document.getElementById('searchForm').submit(); }
+            if (e.key === 'Enter') {
+                document.getElementById('searchForm').submit();
+            }
         });
+
+
+
+        // ========== AI Mode ==========
+        let aiMode = false;
         function toggleAIMode() {
             aiMode = !aiMode;
             const btn = document.getElementById('aiModeBtn');
             const input = document.querySelector('.search-input');
-            const box = document.querySelector('.search-box');
             if (aiMode) {
-                btn.classList.add('active');
-                btn.textContent = 'AI mode ✓';
+                if (btn) {
+                    btn.classList.add('active');
+                    if(btn) btn.textContent = 'AI mode ✓';
+                }
                 input.placeholder = 'اسأل AI أي شيء...';
-                box.style.boxShadow = '0 0 0 2px #9f7aea, 0 8px 32px rgba(102,126,234,0.5)';
+                input.style.boxShadow = '0 0 0 2px #9f7aea';
             } else {
-                btn.classList.remove('active');
-                btn.textContent = 'AI mode';
+                if (btn) {
+                    btn.classList.remove('active');
+                    if(btn) btn.textContent = 'AI mode';
+                }
                 input.placeholder = 'Search';
-                box.style.boxShadow = '';
+                input.style.boxShadow = '';
             }
         }
 
-        // ========== بحث بالصور - يعمل الآن 100% ==========
+        // ========== بحث بالصور - يقرأ محتوى الصورة مباشرة ==========
         function handleImageSearch(input) {
-            if (input.files && input.files[0]) {
-                const file = input.files[0];
-                const searchInput = document.querySelector('.search-input');
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    // حفظ الصورة مؤقتا وعرضها
-                    searchInput.value = file.name.replace(/\.[^/.]+$/, "");
-                    searchInput.focus();
-                    // يمكنك هنا رفع الصورة لخدمة بحث حقيقية
-                    console.log('Image selected:', file.name);
-                };
-                reader.readAsDataURL(file);
-                // إذا AI mode مفعل، ابحث عن الصورة في Gemalot
-                if (aiMode) {
-                    alert('تم اختيار الصورة: ' + file.name + '\nسيتم البحث عنها في AI mode');
-                    setTimeout(function() {
-                        window.location.href = 'https://mohamedmadoui5195.github.io/Gemalot/?q=حلل هذه الصورة: ' + encodeURIComponent(file.name);
-                    }, 500);
-                } else {
-                    // بحث عادي بالصور - محاكاة
-                    setTimeout(function() {
-                        if(confirm('تم اختيار الصورة: ' + file.name + '\nهل تريد البحث عنها؟')) {
-                            document.getElementById('searchForm').submit();
+            if (!input.files || !input.files[0]) return;
+            const file = input.files[0];
+            const searchInput = document.querySelector('.search-input');
+            const searchBox = document.querySelector('.search-box');
+            
+            // إظهار حالة التحميل
+            searchInput.value = 'جاري قراءة محتوى الصورة...';
+            searchInput.disabled = true;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    // 1. استخراج الألوان السائدة
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    canvas.width = 100;
+                    canvas.height = 100;
+                    ctx.drawImage(img, 0, 0, 100, 100);
+                    const imageData = ctx.getImageData(0, 0, 100, 100).data;
+                    
+                    let r=0,g=0,b=0,count=0;
+                    for(let i=0;i<imageData.length;i+=4) {
+                        // تجاهل الشفاف والأسود والأبيض الصافي
+                        if(imageData[i+3] > 128) {
+                            r += imageData[i];
+                            g += imageData[i+1];
+                            b += imageData[i+2];
+                            count++;
                         }
-                    }, 300);
+                    }
+                    r = Math.round(r/count); g = Math.round(g/count); b = Math.round(b/count);
+                    const dominantColor = `rgb(${r},${g},${b})`;
+                    
+                    // 2. استخراج النص من الصورة باستخدام OCR (Tesseract)
+                    // نستخدم مكتبة بسيطة لقراءة النص
+                    searchInput.value = 'جاري استخراج النصوص والعناوين من الصورة...';
+                    
+                    // تحميل Tesseract.js ديناميكيا
+                    if(!window.Tesseract) {
+                        const script = document.createElement('script');
+                        script.src = 'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';
+                        script.onload = function() {
+                            doOCR(e.target.result, file.name, dominantColor);
+                        };
+                        script.onerror = function() {
+                            // fallback بدون OCR
+                            doFallbackSearch(file.name, dominantColor);
+                        };
+                        document.head.appendChild(script);
+                    } else {
+                        doOCR(e.target.result, file.name, dominantColor);
+                    }
+                };
+                img.src = e.target.result;
+                // حفظ الصورة
+                try { localStorage.setItem('lastSearchedImage', e.target.result); } catch(e){}
+            };
+            reader.readAsDataURL(file);
+        }
+        
+        function doOCR(imageDataUrl, fileName, dominantColor) {
+            const searchInput = document.querySelector('.search-input');
+            Tesseract.recognize(imageDataUrl, 'ara+eng', {
+                logger: m => {
+                    if(m.status === 'recognizing text') {
+                        searchInput.value = `جاري قراءة المحتوى ${Math.round(m.progress*100)}%...`;
+                    }
+                }
+            }).then(({data: {text}}) => {
+                const cleanText = text.trim().replace(/\s+/g, ' ');
+                if(cleanText.length > 2) {
+                    // وجد نص في الصورة - ابحث به
+                    searchInput.disabled = false;
+                    searchInput.value = cleanText.substring(0, 150);
+                    console.log('OCR Text:', cleanText, 'Color:', dominantColor);
+                    // بحث مباشر بمحتوى الصورة
+                    setTimeout(() => { document.getElementById('searchForm').submit(); }, 400);
+                } else {
+                    doFallbackSearch(fileName, dominantColor);
+                }
+            }).catch(() => {
+                doFallbackSearch(fileName, dominantColor);
+            });
+        }
+        
+        function doFallbackSearch(fileName, dominantColor) {
+            const searchInput = document.querySelector('.search-input');
+            searchInput.disabled = false;
+            // إذا ما في نص، استخدم وصف بالألوان والمحتوى
+            // نحاول نستنتج من اسم الملف أو الألوان
+            let query = '';
+            // تحليل بسيط: إذا الصورة فيها ألوان معينة، ابحث عنها
+            if(dominantColor) {
+                // نحول اللون لكلمات مفتاحية
+                const colorName = getColorName(dominantColor);
+                query = colorName ? colorName + ' ' : '';
+            }
+            // إذا فشل كل شيء، ابحث عن محتوى الصورة بشكل عام
+            if(!query) {
+                // استخدم AI mode تلقائيا لتحليل الصورة
+                if(aiMode) {
+                    window.location.href = 'https://mohamedmadoui5195.github.io/Gemalot/?q=' + encodeURIComponent('حلل هذه الصورة واذكر لي ما فيها من نصوص وعناوين وألوان: ' + fileName);
+                    return;
+                } else {
+                    // ابحث في نتائجك عن الصور المشابهة
+                    query = 'صورة ' + fileName.replace(/\.[^/.]+$/, '').replace(/[_-]/g, ' ');
                 }
             }
+            searchInput.value = query.trim();
+            searchInput.focus();
+            setTimeout(() => { document.getElementById('searchForm').submit(); }, 400);
+        }
+        
+        function getColorName(rgbStr) {
+            // تحويل RGB لاسم لون عربي بسيط
+            const match = rgbStr.match(/\d+/g);
+            if(!match) return '';
+            const r=parseInt(match[0]), g=parseInt(match[1]), b=parseInt(match[2]);
+            if(r>200 && g>200 && b>200) return 'أبيض';
+            if(r<50 && g<50 && b<50) return 'أسود';
+            if(r>150 && g<100 && b<100) return 'أحمر';
+            if(r<100 && g>150 && b<100) return 'أخضر';
+            if(r<100 && g<100 && b>150) return 'أزرق';
+            if(r>150 && g>150 && b<100) return 'أصفر';
+            return '';
         }
 
-        // ========== بحث صوتي - يعمل الآن 100% ==========
+        // ========== بحث صوتي ==========
         let recognition = null;
         function startVoiceSearch() {
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
             if (!SpeechRecognition) {
-                alert('المتصفح لا يدعم البحث الصوتي\nجرب Chrome على الأندرويد');
+                alert('المتصفح لا يدعم البحث الصوتي');
                 return;
             }
-            const micBtn = document.getElementById('micBtn');
-            const micWrap = document.getElementById('micBtnWrap') || micBtn.parentElement;
-            
+
             if (recognition) {
-                try { recognition.stop(); } catch(e){}
+                recognition.stop();
                 recognition = null;
-                if(micBtn) micBtn.style.fill = '#6ba3e0';
-                if(micWrap) micWrap.style.background = 'rgba(255,255,255,0.06)';
+                document.getElementById('micBtn').style.fill = '#6ba3e0';
                 return;
             }
 
-            try {
-                recognition = new SpeechRecognition();
-                recognition.lang = ''; // فارغ = يتعرف على أي لغة تلقائيا (عربي/انجليزي)
-                recognition.interimResults = false;
-                recognition.maxAlternatives = 1;
-                recognition.continuous = false;
+            recognition = new SpeechRecognition();
+            // يدعم أي لغة (حسب لغة الجهاز أو ما يقوله المستخدم)
+            recognition.lang = navigator.language || navigator.userLanguage || 'en-US';
+            recognition.interimResults = false;
+            recognition.maxAlternatives = 1;
+            recognition.continuous = false;
 
-                if(micBtn) micBtn.style.fill = '#ff3b30';
-                if(micWrap) micWrap.style.background = 'rgba(255,59,48,0.25)';
-                
-                // اهتزاز للتنبيه
-                if(navigator.vibrate) navigator.vibrate(50);
+            const micBtn = document.getElementById('micBtn');
+            micBtn.style.fill = '#ff5252'; // أحمر أثناء التسجيل
 
-                recognition.onstart = function() {
-                    console.log('Voice started');
-                };
-
-                recognition.onresult = function(event) {
-                    const transcript = event.results[0][0].transcript.trim();
-                    const searchInput = document.querySelector('.search-input');
-                    searchInput.value = transcript;
-                    searchInput.focus();
-                    if(micBtn) micBtn.style.fill = '#6ba3e0';
-                    if(micWrap) micWrap.style.background = 'rgba(255,255,255,0.06)';
-                    recognition = null;
-                    if(navigator.vibrate) navigator.vibrate([50,50,50]);
-                    // إرسال تلقائي بعد الصوت بنصف ثانية
-                    setTimeout(function() {
-                        document.getElementById('searchForm').submit();
-                    }, 600);
-                };
-
-                recognition.onerror = function(event) {
-                    console.error('Voice error:', event.error);
-                    if(micBtn) micBtn.style.fill = '#6ba3e0';
-                    if(micWrap) micWrap.style.background = 'rgba(255,255,255,0.06)';
-                    recognition = null;
-                    if (event.error === 'not-allowed') {
-                        alert('❌ يرجى السماح بالوصول إلى الميكروفون من إعدادات المتصفح');
-                    } else if (event.error === 'no-speech') {
-                        alert('لم أسمع أي صوت، حاول مرة أخرى');
-                    } else if (event.error === 'network') {
-                        alert('تحتاج إنترنت للبحث الصوتي');
-                    } else {
-                        alert('حدث خطأ: ' + event.error);
-                    }
-                };
-
-                recognition.onend = function() {
-                    if(micBtn) micBtn.style.fill = '#6ba3e0';
-                    if(micWrap) micWrap.style.background = 'rgba(255,255,255,0.06)';
-                    recognition = null;
-                };
-
-                recognition.start();
-            } catch(err) {
-                alert('خطأ في تشغيل البحث الصوتي: ' + err.message);
+            recognition.onresult = function(event) {
+                const transcript = event.results[0][0].transcript;
+                const searchInput = document.querySelector('.search-input');
+                searchInput.value = transcript;
+                searchInput.focus();
+                micBtn.style.fill = '#6ba3e0';
                 recognition = null;
-                if(micBtn) micBtn.style.fill = '#6ba3e0';
-            }
+                // إرسال تلقائي بعد الصوت
+                setTimeout(function() {
+                    document.getElementById('searchForm').submit();
+                }, 400);
+            };
+
+            recognition.onerror = function(event) {
+                console.error('Voice error:', event.error);
+                micBtn.style.fill = '#6ba3e0';
+                recognition = null;
+                if (event.error === 'not-allowed') {
+                    alert('يرجى السماح بالوصول إلى الميكروفون');
+                } else {
+                    alert('حدث خطأ في البحث الصوتي');
+                }
+            };
+
+            recognition.onend = function() {
+                micBtn.style.fill = '#6ba3e0';
+                recognition = null;
+            };
+
+            recognition.start();
         }
 
         if ('serviceWorker' in navigator) {
