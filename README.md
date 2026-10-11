@@ -494,96 +494,96 @@
   background: #ffffff;
   border-radius: 24px;
   overflow: hidden;
-  width: 340px;
+  width: 100%;
+  max-width: 360px;
+  margin: 20px auto;
   box-shadow: 0 10px 25px -5px rgba(0,0,0,0.08), 0 8px 10px -6px rgba(0,0,0,0.04);
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid rgba(255,255,255,0.8);
   position: relative;
-  margin: 20px auto;
 }
 
 .ad-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px -10px rgba(0,0,0,0.12), 0 12px 20px -8px rgba(0,0,0,0.06);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px -10px rgba(0,0,0,0.12);
 }
 
 .ad-badge {
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 14px;
+  right: 14px;
   background: rgba(255,255,255,0.92);
   backdrop-filter: blur(8px);
   color: #718096;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 500;
-  padding: 6px 14px;
+  padding: 5px 12px;
   border-radius: 50px;
   z-index: 10;
   box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
 
-.card-image {
+.ad-card-image {
   width: 100%;
-  height: 200px;
+  height: 180px;
   object-fit: cover;
   display: block;
 }
 
-.card-content {
-  padding: 24px 22px 28px;
+.ad-card-content {
+  padding: 20px 18px 24px;
   text-align: right;
 }
 
-.card-title {
-  font-size: 1.35rem;
+.ad-card-title {
+  font-size: 1.3rem;
   font-weight: 800;
   color: #1a202c;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   line-height: 1.3;
 }
 
-.card-desc {
-  font-size: 0.95rem;
+.ad-card-desc {
+  font-size: 0.92rem;
   color: #4a5568;
-  line-height: 1.7;
-  margin-bottom: 22px;
+  line-height: 1.65;
+  margin-bottom: 18px;
 }
 
-.card-btn {
-  display: inline-flex;
+.ad-card-btn {
+  display: flex;
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
-  color: white;
-  text-decoration: none;
+  color: white !important;
+  text-decoration: none !important;
   font-size: 0.95rem;
   font-weight: 600;
-  padding: 12px 28px;
+  padding: 12px 24px;
   border-radius: 50px;
   transition: all 0.3s ease;
   box-shadow: 0 4px 14px rgba(66,153,225,0.35);
   width: 100%;
 }
 
-.card-btn:hover {
+.ad-card-btn:hover {
   background: linear-gradient(135deg, #3182ce 0%, #2b6cb0 100%);
-  box-shadow: 0 6px 20px rgba(66,153,225,0.45);
   transform: translateY(-2px);
 }
 
-.card-btn.green {
+.ad-card-btn.green {
   background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
   box-shadow: 0 4px 14px rgba(72,187,120,0.35);
 }
-.card-btn.green:hover {
+.ad-card-btn.green:hover {
   background: linear-gradient(135deg, #38a169 0%, #2f855a 100%);
 }
 
-.card-btn.purple {
+.ad-card-btn.purple {
   background: linear-gradient(135deg, #9f7aea 0%, #805ad5 100%);
   box-shadow: 0 4px 14px rgba(159,122,234,0.35);
 }
-.card-btn.purple:hover {
+.ad-card-btn.purple:hover {
   background: linear-gradient(135deg, #805ad5 0%, #6b46c1 100%);
 }
 </style>
@@ -591,33 +591,33 @@
 <!-- البطاقة الأولى -->
 <div class="ad-card">
   <span class="ad-badge">مادة إعلانية</span>
-  <img src="Screenshot_20261011-191020.jpg" alt="مداد" class="card-image">
-  <div class="card-content">
-    <h2 class="card-title">مداد</h2>
-    <p class="card-desc">أقوى منصة لصنع الألعاب والمواقع والبرامج، حول أفكارك إلى واقع</p>
-    <a href="https://nazim10-u.github.io/nazim/" class="card-btn" target="_blank">زيارة الموقع</a>
+  <img src="Screenshot_20261011-191020.jpg" alt="مداد" class="ad-card-image">
+  <div class="ad-card-content">
+    <h2 class="ad-card-title">مداد</h2>
+    <p class="ad-card-desc">أقوى منصة لصنع الألعاب والمواقع والبرامج، حول أفكارك إلى واقع</p>
+    <a href="https://nazim10-u.github.io/nazim/" class="ad-card-btn" target="_blank">زيارة الموقع</a>
   </div>
 </div>
 
 <!-- البطاقة الثانية -->
 <div class="ad-card">
   <span class="ad-badge">مادة إعلانية</span>
-  <img src="Screenshot_20261011-195632.jpg" alt="alarabiya.net" class="card-image">
-  <div class="card-content">
-    <h2 class="card-title">alarabiya.net</h2>
-    <p class="card-desc">تابعوا الأخبار العربية والعالمية هنا</p>
-    <a href="https://www.alarabiya.net" class="card-btn green" target="_blank">زيارة الموقع</a>
+  <img src="Screenshot_20261011-195632.jpg" alt="alarabiya.net" class="ad-card-image">
+  <div class="ad-card-content">
+    <h2 class="ad-card-title">alarabiya.net</h2>
+    <p class="ad-card-desc">تابعوا الأخبار العربية والعالمية هنا</p>
+    <a href="https://www.alarabiya.net" class="ad-card-btn green" target="_blank">زيارة الموقع</a>
   </div>
 </div>
 
 <!-- البطاقة الثالثة -->
 <div class="ad-card">
   <span class="ad-badge">مادة إعلانية</span>
-  <img src="Screenshot_20261011-200809.jpg" alt="Alislamiah search console" class="card-image">
-  <div class="card-content">
-    <h2 class="card-title">Alislamiah search console</h2>
-    <p class="card-desc">آداة مشرفي المواقع... إن كان لديك موقع أطلب هنا لكي نفهرسه لك ويظهر في نتائج البحث</p>
-    <a href="https://mohamedmadoui5195.github.io/Alislamiah-search-console/" class="card-btn purple" target="_blank">زيارة الموقع</a>
+  <img src="Screenshot_20261011-200809.jpg" alt="Alislamiah search console" class="ad-card-image">
+  <div class="ad-card-content">
+    <h2 class="ad-card-title">Alislamiah search console</h2>
+    <p class="ad-card-desc">آداة مشرفي المواقع... إن كان لديك موقع أطلب هنا لكي نفهرسه لك ويظهر في نتائج البحث</p>
+    <a href="https://mohamedmadoui5195.github.io/Alislamiah-search-console/" class="ad-card-btn purple" target="_blank">زيارة الموقع</a>
   </div>
 </div>
 
