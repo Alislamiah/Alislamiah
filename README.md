@@ -21,6 +21,7 @@
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
+            padding-bottom: 110px; /* مساحة تحت عشان ما يختبئ تحت الشريط السفلي */
         }
 
         /* ================= الشاشة الترحيبية الاحترافية ================= */
@@ -496,11 +497,12 @@
   overflow: hidden;
   width: 100%;
   max-width: 360px;
-  margin: 20px auto;
+  margin: 20px auto 30px;
   box-shadow: 0 10px 25px -5px rgba(0,0,0,0.08), 0 8px 10px -6px rgba(0,0,0,0.04);
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid rgba(255,255,255,0.8);
   position: relative;
+  z-index: 5;
 }
 
 .ad-card:hover {
