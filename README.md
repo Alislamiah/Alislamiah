@@ -227,13 +227,14 @@
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border-radius: 50px;
-            padding: 14px 18px;
+            padding: 12px 14px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
             box-shadow: 0 8px 32px rgba(0, 20, 50, 0.6), 
                         0 0 0 1px rgba(80, 160, 255, 0.25);
             transition: all 0.25s ease;
+            overflow: visible;
         }
 
         .search-box:focus-within {
@@ -267,7 +268,8 @@
         .search-actions {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 10px;
+            flex-shrink: 0;
         }
 
         .action-btn {
@@ -276,11 +278,48 @@
             fill: #6ba3e0;
             cursor: pointer;
             transition: fill 0.2s;
+            flex-shrink: 0;
         }
 
         .action-btn:active {
             fill: #a8d4ff;
         }
+
+        .search-left{
+            display:flex;
+            align-items:center;
+            gap:8px;
+            flex-shrink:0;
+        }
+        .ai-mode-pill{
+            display:flex;
+            align-items:center;
+            gap:4px;
+            background:rgba(159,122,234,0.14);
+            border:1px solid rgba(159,122,234,0.45);
+            color:#c4b5fd;
+            border-radius:20px;
+            padding:5px 12px;
+            font-size:13px;
+            font-weight:800;
+            cursor:pointer;
+            transition:all 0.2s ease;
+            white-space:nowrap;
+            font-family:inherit;
+            flex-shrink:0;
+        }
+        .ai-mode-pill:hover{
+            background:rgba(159,122,234,0.25);
+            transform:translateY(-1px);
+        }
+        .ai-mode-pill.active{
+            background:linear-gradient(135deg,#9f7aea,#667eea);
+            color:#fff !important;
+            border-color:transparent;
+            box-shadow:0 0 0 2px rgba(255,255,255,0.7),0 4px 14px rgba(102,126,234,0.7);
+        }
+        /* نخفي الزر القديم لو بقي في الكاش */
+        .ai-mode-btn{display:none !important;}
 
         /* البطاقات السفلية */
         .cards {
@@ -445,17 +484,21 @@
 
     <!-- المحتوى الرئيسي -->
     <div class="main">
-        <!-- شريط البحث -->
+        <!-- شريط البحث - مع زر AI mode بجانب العدسة -->
         <form class="search-box" action="results_full.html" method="GET" id="searchForm">
-            <svg class="search-icon" viewBox="0 0 24 24">
-                <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-            </svg>
+            <div class="search-left">
+                <svg class="search-icon" viewBox="0 0 24 24">
+                    <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                </svg>
+                <button type="button" class="ai-mode-pill" id="aiModeBtn" onclick="toggleAIMode()" title="AI Mode">AI mode</button>
+            </div>
             <input type="text" name="q" class="search-input" placeholder="Search" autocomplete="off" autofocus>
             <div class="search-actions">
-                <svg class="action-btn" viewBox="0 0 24 24" onclick="alert('الكاميرا')">
+                <input type="file" id="imageSearchInput" accept="image/*" capture="environment" style="display:none;" onchange="handleImageSearch(this)">
+                <svg class="action-btn" viewBox="0 0 24 24" onclick="document.getElementById('imageSearchInput').click()" title="بحث بالصور">
                     <path d="M12 15.2c1.76 0 3.2-1.44 3.2-3.2s-1.44-3.2-3.2-3.2-3.2 1.44-3.2 3.2 1.44 3.2 3.2 3.2zm0-8c2.65 0 4.8 2.15 4.8 4.8s-2.15 4.8-4.8 4.8-4.8-2.15-4.8-4.8 2.15-4.8 4.8-4.8zm8.4-2H18l-1.2-1.6c-.3-.4-.8-.6-1.3-.6H8.5c-.5 0-1 .2-1.3.6L6 5.2H3.6C2.7 5.2 2 5.9 2 6.8v12.4c0 .9.7 1.6 1.6 1.6h16.8c.9 0 1.6-.7 1.6-1.6V6.8c0-.9-.7-1.6-1.6-1.6z"/>
                 </svg>
-                <svg class="action-btn" viewBox="0 0 24 24" onclick="alert('الميكروفون')">
+                <svg class="action-btn" id="micBtn" viewBox="0 0 24 24" onclick="startVoiceSearch()" title="بحث صوتي">
                     <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm-1-9c0-.55.45-1 1-1s1 .45 1 1v6c0 .55-.45 1-1 1s-1-.45-1-1V5zm6 6c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
                 </svg>
             </div>
@@ -604,7 +647,7 @@
 <!-- البطاقة الثانية -->
 <div class="ad-card">
   <span class="ad-badge">مادة إعلانية</span>
-  <img src="Screenshot_20261011-195632.jpg" alt="alarabiya.net" class="ad-card-image">
+  <img src="Screenshot_20261011-200809.jpg" alt="alarabiya.net" class="ad-card-image">
   <div class="ad-card-content">
     <h2 class="ad-card-title">alarabiya.net</h2>
     <p class="ad-card-desc">تابعوا الأخبار العربية والعالمية هنا</p>
@@ -615,7 +658,7 @@
 <!-- البطاقة الثالثة -->
 <div class="ad-card">
   <span class="ad-badge">مادة إعلانية</span>
-  <img src="Screenshot_20261011-200809.jpg" alt="Alislamiah search console" class="ad-card-image">
+  <img src="Screenshot_20261011-195632.jpg" alt="Alislamiah search console" class="ad-card-image">
   <div class="ad-card-content">
     <h2 class="ad-card-title">Alislamiah search console</h2>
     <p class="ad-card-desc">آداة مشرفي المواقع... إن كان لديك موقع أطلب هنا لكي نفهرسه لك ويظهر في نتائج البحث</p>
@@ -642,6 +685,8 @@
     </nav>
 
     <script>
+        // ========== AI Mode Variable - يجب أن يكون أولا ==========
+        let aiMode = false;
         // مؤقت الـ 5 ثوانٍ لإخفاء الشاشة الترحيبية
         window.addEventListener("DOMContentLoaded", function () {
             setTimeout(function () {
@@ -652,11 +697,17 @@
             }, 5000);
         });
 
-        // إرسال البحث إلى صفحة النتائج
+        // إرسال البحث - لو AI Mode يروح لـ Gemalot
         document.getElementById('searchForm').addEventListener('submit', function(e) {
             const q = this.querySelector('input[name="q"]').value.trim();
             if (!q) {
                 e.preventDefault();
+                return;
+            }
+            if (aiMode) {
+                e.preventDefault();
+                const gemalotUrl = 'https://mohamedmadoui5195.github.io/Gemalot/?q=' + encodeURIComponent(q);
+                window.location.href = gemalotUrl;
                 return;
             }
         });
@@ -667,6 +718,102 @@
                 document.getElementById('searchForm').submit();
             }
         });
+
+
+
+        // ========== AI Mode ==========
+        function toggleAIMode() {
+            aiMode = !aiMode;
+            const btn = document.getElementById('aiModeBtn');
+            const input = document.querySelector('.search-input');
+            if (aiMode) {
+                if (btn) {
+                    btn.classList.add('active');
+                    if(btn) btn.textContent = 'AI mode ✓';
+                }
+                input.placeholder = 'اسأل AI أي شيء...';
+                input.style.boxShadow = '0 0 0 2px #9f7aea';
+            } else {
+                if (btn) {
+                    btn.classList.remove('active');
+                    if(btn) btn.textContent = 'AI mode';
+                }
+                input.placeholder = 'Search';
+                input.style.boxShadow = '';
+            }
+        }
+
+        // ========== بحث بالصور ==========
+        function handleImageSearch(input) {
+            if (input.files && input.files[0]) {
+                const file = input.files[0];
+                const fileName = file.name;
+                // ضع اسم الصورة في حقل البحث (محاكاة)
+                const searchInput = document.querySelector('.search-input');
+                searchInput.value = 'بحث عن صورة: ' + fileName;
+                searchInput.focus();
+                // يمكن لاحقاً رفع الصورة لخدمة بحث حقيقية
+                alert('تم اختيار الصورة: ' + fileName + '\n(ميزة البحث بالصور قيد التطوير)');
+            }
+        }
+
+        // ========== بحث صوتي ==========
+        let recognition = null;
+        function startVoiceSearch() {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!SpeechRecognition) {
+                alert('المتصفح لا يدعم البحث الصوتي');
+                return;
+            }
+
+            if (recognition) {
+                recognition.stop();
+                recognition = null;
+                document.getElementById('micBtn').style.fill = '#6ba3e0';
+                return;
+            }
+
+            recognition = new SpeechRecognition();
+            // يدعم أي لغة (حسب لغة الجهاز أو ما يقوله المستخدم)
+            recognition.lang = navigator.language || navigator.userLanguage || 'en-US';
+            recognition.interimResults = false;
+            recognition.maxAlternatives = 1;
+            recognition.continuous = false;
+
+            const micBtn = document.getElementById('micBtn');
+            micBtn.style.fill = '#ff5252'; // أحمر أثناء التسجيل
+
+            recognition.onresult = function(event) {
+                const transcript = event.results[0][0].transcript;
+                const searchInput = document.querySelector('.search-input');
+                searchInput.value = transcript;
+                searchInput.focus();
+                micBtn.style.fill = '#6ba3e0';
+                recognition = null;
+                // إرسال تلقائي بعد الصوت
+                setTimeout(function() {
+                    document.getElementById('searchForm').submit();
+                }, 400);
+            };
+
+            recognition.onerror = function(event) {
+                console.error('Voice error:', event.error);
+                micBtn.style.fill = '#6ba3e0';
+                recognition = null;
+                if (event.error === 'not-allowed') {
+                    alert('يرجى السماح بالوصول إلى الميكروفون');
+                } else {
+                    alert('حدث خطأ في البحث الصوتي');
+                }
+            };
+
+            recognition.onend = function() {
+                micBtn.style.fill = '#6ba3e0';
+                recognition = null;
+            };
+
+            recognition.start();
+        }
 
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
