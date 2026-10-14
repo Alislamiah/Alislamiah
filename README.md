@@ -124,14 +124,6 @@ body{background:#0a1628;color:#e8f0fe;min-height:100vh;overflow-x:hidden;padding
   box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
 
-.ad-card-video {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  display: block;
-  background: #000;
-}
-
 .ad-card-content {
   padding: 20px 18px 24px;
   text-align: right;
@@ -174,16 +166,138 @@ body{background:#0a1628;color:#e8f0fe;min-height:100vh;overflow-x:hidden;padding
 }
 </style>
 
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap');
+
+.ad-card-outhub {
+  font-family: 'Tajawal', sans-serif;
+  background: #ffffff;
+  border-radius: 24px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 360px;
+  margin: 20px auto 30px;
+  box-shadow: 0 10px 25px -5px rgba(0,0,0,0.08), 0 8px 10px -6px rgba(0,0,0,0.04);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255,255,255,0.8);
+  position: relative;
+  z-index: 5;
+}
+
+.ad-card-outhub:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px -10px rgba(0,0,0,0.12);
+}
+
+.ad-badge-outhub {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(8px);
+  color: #718096;
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 50px;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.ad-card-outhub .ad-card-content {
+  padding: 20px 18px 24px;
+  text-align: right;
+}
+
+.ad-card-outhub .ad-card-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #1a202c;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.ad-card-outhub .ad-card-desc {
+  font-size: 0.92rem;
+  color: #4a5568;
+  line-height: 1.65;
+  margin-bottom: 18px;
+}
+
+.ad-card-outhub .ad-card-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+  color: white !important;
+  text-decoration: none !important;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px rgba(66,153,225,0.35);
+  width: 100%;
+}
+
+.ad-card-outhub .ad-card-btn:hover {
+  background: linear-gradient(135deg, #3182ce 0%, #2b6cb0 100%);
+  transform: translateY(-2px);
+}
+</style>
+
 <!-- بطاقة Outhub -->
-<div class="ad-card">
-  <span class="ad-badge">مادة إعلانية</span>
-  <video class="ad-card-video" src="Outhub.mp4" autoplay muted loop playsinline></video>
+<div class="ad-card-outhub">
+  <span class="ad-badge-outhub">مادة إعلانية</span>
+  
+  <div style="position:relative; width:100%; height:200px; background:#000; overflow:hidden;">
+    <video id="outhubVideo" 
+           src="Outhub.mp4" 
+           muted 
+           loop 
+           playsinline 
+           preload="auto"
+           style="width:100%; height:100%; object-fit:cover; display:block;">
+    </video>
+    
+    <div id="playOverlay" onclick="playOuthubVideo()" 
+         style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.35); cursor:pointer; z-index:5;">
+      <div style="width:60px; height:60px; background:rgba(255,255,255,0.9); border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 15px rgba(0,0,0,0.3);">
+        <div style="width:0; height:0; border-top:12px solid transparent; border-bottom:12px solid transparent; border-left:20px solid #1a202c; margin-left:4px;"></div>
+      </div>
+    </div>
+  </div>
+
   <div class="ad-card-content">
     <h2 class="ad-card-title">Outhub</h2>
     <p class="ad-card-desc">منصتك لإنشاء المواقع والتطبيقات.. ابدأ مشروعك الرقمي من هنا</p>
     <a href="https://mohamedmadoui5195.github.io/outhub/" class="ad-card-btn" target="_blank">زيارة الموقع</a>
   </div>
 </div>
+
+<script>
+function playOuthubVideo() {
+  const video = document.getElementById('outhubVideo');
+  const overlay = document.getElementById('playOverlay');
+  if (video) {
+    video.play().then(function() {
+      if (overlay) overlay.style.display = 'none';
+    }).catch(function() {});
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const video = document.getElementById('outhubVideo');
+  if (video) {
+    video.play().then(function() {
+      const overlay = document.getElementById('playOverlay');
+      if (overlay) overlay.style.display = 'none';
+    }).catch(function() {});
+  }
+});
+</script>
+
 
 <div class="ad-card"><span class="ad-badge">مادة إعلانية</span><img src="Screenshot_20261011-200809.jpg" alt="alarabiya.net" class="ad-card-image"><div class="ad-card-content"><h2 class="ad-card-title">alarabiya.net</h2><p class="ad-card-desc">تابعوا الأخبار العربية والعالمية هنا</p><a href="https://www.alarabiya.net" class="ad-card-btn" target="_blank">زيارة الموقع</a></div></div>
 <div class="ad-card"><span class="ad-badge">مادة إعلانية</span><img src="Screenshot_20261011-195632.jpg" alt="Alislamiah search console" class="ad-card-image"><div class="ad-card-content"><h2 class="ad-card-title">Alislamiah search console</h2><p class="ad-card-desc">آداة مشرفي المواقع... إن كان لديك موقع أطلب هنا لكي نفهرسه لك ويظهر في نتائج البحث</p><a href="https://mohamedmadoui5195.github.io/Alislamiah-search-console/" class="ad-card-btn" target="_blank">زيارة الموقع</a></div></div>
