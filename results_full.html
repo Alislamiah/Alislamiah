@@ -255,6 +255,27 @@
             line-height: 1.75;
             text-shadow: 0 1px 2px rgba(0,0,0,0.2);
         }
+        .ai-content.clamped {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .ai-show-more {
+            display: none;
+            margin-top: 8px;
+            background: rgba(255,255,255,0.25);
+            border: none;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 16px;
+            cursor: pointer;
+        }
+        .ai-show-more.visible {
+            display: inline-block;
+        }
 
 .result-card {
             display: flex;
@@ -466,6 +487,7 @@
                 <span class="ai-badge">Gemalot</span>
             </div>
             <div id="aiText" class="ai-content"></div>
+            <button type="button" class="ai-show-more" id="aiShowMoreBtn">Show more</button>
         </div>
         <div id="resultsList"></div>
     </main>
@@ -1034,25 +1056,64 @@
         }
 
         function getAIResponse(query) {
-            const q = query.toLowerCase();
-            if (q.includes('الإسلامية') || q.includes('alislamiah')) {
-                return `تعتبر منصة <strong>الإسلامية</strong> شبكة رقمية متكاملة تقدم خدمات متنوعة تشمل المنصات التعليمية، المتاجر الرقمية، ومساعد الذكاء الاصطناعي لتسهيل الوصول للمحتوى الهادف.`;
-            } else if (q.includes('متجر')) {
-                return `موقع <strong>متجر الإسلامية</strong> يوفر لك أحدث التطبيقات والمنصات الرقمية الخاصة بشبكة الإسلامية للتحميل والاستخدام المباشر.`;
-            } else if (q.includes('أحمد النفيس') || q.includes('النفيس')) {
-                return `تعتبر <strong>قناة الشيخ أحمد النفيس</strong> منارة قرآنية مباركة تقدم تلاوات عطرة، خاشعة، ومؤثرة لآي الذكر الحكيم.`;
-            } else if (q.includes('فركوس')) {
-                return `<strong>قناة الشيخ فركوس</strong> هي القناة الرسمية لفضيلة الشيخ الدكتور محمد علي فركوس، وتضم العديد من الخطب والدروس العلمية القيمة.`;
-            } else if (q.includes('أبشر') || q.includes('absher')) {
-                return `منصة <strong>أبشر</strong> هي المنصة الإلكترونية الرسمية للخدمات الحكومية للأفراد والقطاع التجاري في السعودية.`;
-            } else if (q.includes('ناجز')) {
-                return `منصة <strong>ناجز</strong> بوابة الخدمات العدلية والقضائية الإلكترونية لوزارة العدل السعودية.`;
-            } else if (q.includes('الجزائر') || q.includes('أولياء')) {
-                return `يمكنك متابعة النتائج والمستويات الدراسية عبر المنصات الرسمية المعتمدة في الجزائر مثل <strong>فضاء الأولياء</strong>.`;
-            } else {
-                return `بناءً على بحثك عن "<strong>${query}</strong>"، تم عرض النتائج المطابقة من قاعدة بيانات شبكة الإسلامية.`;
+            const q = String(query || "").toLowerCase().trim();
+            if (!q) return "";
+
+            // مطابقة من العنوان (title) فقط — ليس الرابط
+            const aiMatches = library.filter(function(item) {
+                const tt = String(item.title || "").toLowerCase();
+                if (tt.includes(q)) return true;
+                return q.split(/\s+/).filter(function(w) { return w.length > 1; }).some(function(w) {
+                    return tt.includes(w);
+                });
+            });
+
+            if (aiMatches.length > 0) {
+                return aiMatches.map(function(item) {
+                    const title = item.title || "موقع";
+                    const desc = String(item.desc || "").trim();
+                    const type = item.type || "موقع";
+                    if (desc) {
+                        return "<p style=\"margin-bottom:12px\">" + type + " <strong>" + title + "</strong> — " + desc + "</p>";
+                    }
+                    return "<p style=\"margin-bottom:12px\">" + type + " <strong>" + title + "</strong> — ضمن فهرس Alislamiah ويمكنك فتحه من النتائج أدناه.</p>";
+                }).join("");
             }
+
+            return "بناءً على بحثك عن \"<strong>" + String(query).replace(/</g, "&lt;") + "</strong>\"، لم نجد وصفاً مطابقاً في الفهرس حالياً.";
         }
+
+        function applyAiShowMore() {
+            const box = document.getElementById("aiText");
+            const btn = document.getElementById("aiShowMoreBtn");
+            if (!box || !btn) return;
+            box.classList.remove("clamped");
+            btn.classList.remove("visible");
+            btn.textContent = "Show more";
+            btn.onclick = null;
+            requestAnimationFrame(function() {
+                const lineH = parseFloat(getComputedStyle(box).lineHeight) || 24;
+                const maxH = lineH * 3 + 2;
+                if (box.scrollHeight > maxH) {
+                    box.classList.add("clamped");
+                    btn.classList.add("visible");
+                    var expanded = false;
+                    btn.onclick = function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        expanded = !expanded;
+                        if (expanded) {
+                            box.classList.remove("clamped");
+                            btn.textContent = "Show less";
+                        } else {
+                            box.classList.add("clamped");
+                            btn.textContent = "Show more";
+                        }
+                    };
+                }
+            });
+        }
+
 
         function renderResults(query) {
             const resultsList = document.getElementById('resultsList');
@@ -1071,6 +1132,7 @@
 
             aiBox.classList.add('show');
             aiText.innerHTML = getAIResponse(query);
+            applyAiShowMore();
 
             const q = query.toLowerCase().trim();
             const filtered = library.filter(item =>
