@@ -209,14 +209,19 @@
             display: none !important;
         }
 
-        /* صندوق الرد الذكي */
+                        /* صندوق الرد الذكي — مساحة البطاقة كاملة بألوان النجمة */
         .ai-box {
-            background: linear-gradient(145deg, rgba(8, 100, 200, 0.15), rgba(8, 60, 140, 0.08));
-            border: 1px solid rgba(80, 160, 255, 0.25);
+            background: linear-gradient(135deg,
+                #4285F4 0%,
+                #34A853 32%,
+                #FBBC05 66%,
+                #EA4335 100%);
+            border: none;
             border-radius: 16px;
             padding: 16px 18px;
             margin-bottom: 18px;
             display: none;
+            box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35);
         }
 
         .ai-box.show {
@@ -229,27 +234,29 @@
             gap: 8px;
             margin-bottom: 8px;
             font-weight: 600;
-            color: #5eb0ff;
+            color: #ffffff;
             font-size: 14px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.25);
         }
 
         .ai-badge {
-            background: #087fff;
+            background: rgba(255, 255, 255, 0.25);
             color: #fff;
             font-size: 10px;
             padding: 2px 8px;
             border-radius: 12px;
             font-weight: 600;
+            backdrop-filter: blur(4px);
         }
 
         .ai-content {
-            color: #c8dcf0;
+            color: #ffffff;
             font-size: 14px;
             line-height: 1.75;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
         }
 
-        /* بطاقات النتائج */
-        .result-card {
+.result-card {
             display: flex;
             align-items: flex-start;
             gap: 14px;
