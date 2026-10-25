@@ -300,7 +300,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 <div class="ad-card"><span class="ad-badge">مادة إعلانية</span><img src="Screenshot_20261011-200809.jpg" alt="alarabiya.net" class="ad-card-image"><div class="ad-card-content"><h2 class="ad-card-title">alarabiya.net</h2><p class="ad-card-desc">تابعوا الأخبار العربية والعالمية هنا</p><a href="https://www.alarabiya.net" class="ad-card-btn" target="_blank">زيارة الموقع</a></div></div>
-<div class="ad-card"><span class="ad-badge">مادة إعلانية</span><img src="Screenshot_20261011-195632.jpg" alt="Alislamiah search console" class="ad-card-image"><div class="ad-card-content"><h2 class="ad-card-title">Alislamiah search console</h2><p class="ad-card-desc">آداة مشرفي المواقع... إن كان لديك موقع أطلب هنا لكي نفهرسه لك ويظهر في نتائج البحث</p><a href="https://mohamedmadoui5195.github.io/Alislamiah-search-console/" class="ad-card-btn" target="_blank">زيارة الموقع</a></div></div>
+<div class="ad-card"><span class="ad-badge">مادة إعلانية</span><img src="Screenshot_20261011-195632.jpg" alt="Alislamiah search console" class="ad-card-image"><div class="ad-card-content"><h2 class="ad-card-title">Alislamiah search console</h2><p class="ad-card-desc">آداة مشرفي المواقع... إن كان لديك موقع أطلب هنا لكي نفهرسه لك ويظهر في نتائج البحث</p><a href="https://Alislamiah.github.io/Alislamiah-search-console/" class="ad-card-btn" target="_blank">زيارة الموقع</a></div></div>
 <nav class="bottom-nav">
 <a href="index.html" class="nav-item active"><div class="nav-icon">🏠</div><span>البحث</span></a>
 <a href="results_full.html" class="nav-item"><div class="nav-icon">🔍</div><span>بحث</span></a>
