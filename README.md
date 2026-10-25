@@ -78,9 +78,9 @@ body{background:#0a1628;color:#e8f0fe;min-height:100vh;overflow-x:hidden;padding
 </div>
 </form>
 <div class="cards">
-<a href="https://mohamedmadoui5195.github.io/Alislamiah-search-console/" class="card"><div class="card-title">Alislamiah Search</div><div class="card-desc">Search Console</div></a>
-<a href="https://mohamedmadoui5195.github.io/Alislamiah-services/" class="card"><div class="card-title">Alislamiah Services</div><div class="card-desc">الخدمات</div></a>
-<a href="https://mohamedmadoui5195.github.io/Alislamiah-_net/" class="card"><div class="card-title">Alislamiah Net</div><div class="card-desc">الشبكة</div></a>
+<a href="https://Alislamiah.github.io/Alislamiah-search-console/" class="card"><div class="card-title">Alislamiah Search</div><div class="card-desc">Search Console</div></a>
+<a href="https://Alislamiah.github.io/Alislamiah-services/" class="card"><div class="card-title">Alislamiah Services</div><div class="card-desc">الخدمات</div></a>
+<a href="https://Alislamiah.github.io/Alislamiah-_net/" class="card"><div class="card-title">Alislamiah Net</div><div class="card-desc">الشبكة</div></a>
 </div>
 </div>
 <style>@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap');</style>
@@ -272,7 +272,7 @@ body{background:#0a1628;color:#e8f0fe;min-height:100vh;overflow-x:hidden;padding
   <div class="ad-card-content">
     <h2 class="ad-card-title">Outhub</h2>
     <p class="ad-card-desc">منصتك لإنشاء المواقع والتطبيقات.. ابدأ مشروعك الرقمي من هنا</p>
-    <a href="https://mohamedmadoui5195.github.io/outhub/" class="ad-card-btn" target="_blank">زيارة الموقع</a>
+    <a href="https://Alislamiah.github.io/outhub/" class="ad-card-btn" target="_blank">زيارة الموقع</a>
   </div>
 </div>
 
@@ -314,7 +314,7 @@ document.getElementById('searchForm').addEventListener('submit',function(e){
     if(!q){e.preventDefault();return;}
     if(aiMode){
         e.preventDefault();
-        window.location.href='https://mohamedmadoui5195.github.io/Gemalot/?q='+encodeURIComponent(q);
+        window.location.href='https://Alislamiah.github.io/Gemalot/?q='+encodeURIComponent(q);
         return;
     }
 });
