@@ -304,7 +304,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <nav class="bottom-nav">
 <a href="index.html" class="nav-item active"><div class="nav-icon">🏠</div><span>البحث</span></a>
 <a href="results_full.html" class="nav-item"><div class="nav-icon">🔍</div><span>بحث</span></a>
-<a href="https://mohamedmadoui5195.github.io/Gemalot/" class="nav-item"><div class="nav-icon"><div class="gemini-logo">G</div></div><span>Gemalot</span></a>
+<a href="https://Alislamiah.github.io/Gemalot/" class="nav-item"><div class="nav-icon"><div class="gemini-logo">G</div></div><span>Gemalot</span></a>
 </nav>
 <script>
 let aiMode=false;
